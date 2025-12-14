@@ -4,6 +4,7 @@ import {
   Events,
   GatewayIntentBits,
   ChatInputCommandInteraction,
+  MessageFlags,
 } from "discord.js";
 import { readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
