@@ -1,2 +1,2 @@
 export const serverIcon =
-  "https://github-production-user-asset-6210df.s3.amazonaws.com/85281049/526399403-45af41f7-8bed-4ab2-8c44-b48001018ba1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251215%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251215T051452Z&X-Amz-Expires=300&X-Amz-Signature=80006069f92d050c6ac5cbb4deb1f5b791a15b31924225b03cbc07b77a53abbe&X-Amz-SignedHeaders=host";
+  "https://github.com/Vactor0911/allay/releases/download/assets/server-icon.png";
