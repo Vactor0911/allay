@@ -8,6 +8,7 @@ import type { Command } from "../types/command.type.js";
 import { fetchServerStatus } from "../utils/serverStatus.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import { serverIcon } from "../utils/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,17 +32,6 @@ const command: Command = {
         return;
       }
 
-      // 서버 아이콘 첨부 파일 생성
-      const serverIconPath = path.join(
-        __dirname,
-        "..",
-        "assets",
-        "server-icon.png"
-      );
-      const serverIcon = new AttachmentBuilder(serverIconPath, {
-        name: "server-icon.png",
-      });
-
       // 임베드 메시지 생성
       const embed = new EmbedBuilder()
         .setColor(0x4fc8d1)
@@ -50,7 +40,7 @@ const command: Command = {
           `목원대학교 컴공과 마인크래프트 서버
         ㅤ`
         )
-        .setThumbnail("attachment://server-icon.png")
+        .setThumbnail(serverIcon)
         .addFields(
           { name: "버전", value: serverData.version, inline: true },
           {
@@ -79,7 +69,9 @@ const command: Command = {
           iconURL: "https://i.imgur.com/wSTFkRM.png",
         });
 
-      await interaction.editReply({ embeds: [embed], files: [serverIcon] });
+      await interaction.editReply({
+        embeds: [embed],
+      });
     } catch (error) {
       console.error("Error fetching server status:", error);
 
