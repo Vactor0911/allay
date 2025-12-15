@@ -24,6 +24,7 @@ jobs:
             set -e
             cd ~/allay/
             git pull origin main
+            rm -rf dist
             npm install
             npm run build
             npm run deploy

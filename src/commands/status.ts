@@ -23,11 +23,10 @@ const command: Command = {
 
     try {
       // 서버 상태 가져오기
-      const { online, motd, version, players, playersMax } =
-        await fetchServerStatus();
+      const serverData = await fetchServerStatus();
 
       // 서버 오프라인 시
-      if (!online) {
+      if (!serverData.online) {
         await interaction.editReply("서버가 현재 오프라인 상태입니다.");
         return;
       }
@@ -46,17 +45,17 @@ const command: Command = {
       // 임베드 메시지 생성
       const embed = new EmbedBuilder()
         .setColor(0x4fc8d1)
-        .setTitle(motd)
+        .setTitle(serverData.motd)
         .setDescription(
           `목원대학교 컴공과 마인크래프트 서버
         ㅤ`
         )
         .setThumbnail("attachment://server-icon.png")
         .addFields(
-          { name: "버전", value: version, inline: true },
+          { name: "버전", value: serverData.version, inline: true },
           {
             name: "플레이어 수",
-            value: `${players.length} / ${playersMax}`,
+            value: `${serverData.players.length} / ${serverData.playersMax}`,
             inline: true,
           },
           {
@@ -66,7 +65,7 @@ const command: Command = {
           },
           {
             name: "접속자 목록",
-            value: `${players
+            value: `${serverData.players
               .map(
                 (player: { name: string; uuid: string }) => `- ${player.name}`
               )
@@ -74,16 +73,24 @@ const command: Command = {
             inline: false,
           }
         )
-        .setTimestamp()
+        .setTimestamp(serverData.cachetime * 1000)
         .setFooter({
-          text: "Powered by discord.js",
+          text: "미자믹 업데이트 시간",
           iconURL: "https://i.imgur.com/wSTFkRM.png",
         });
 
       await interaction.editReply({ embeds: [embed], files: [serverIcon] });
     } catch (error) {
       console.error("Error fetching server status:", error);
-      await interaction.editReply("현재 서버 상태를 가져올 수 없습니다.");
+
+      // interaction이 deferred 상태인지 확인 후 응답
+      if (interaction.deferred) {
+        await interaction.editReply("현재 서버 상태를 가져올 수 없습니다.");
+      }
+      // deferred가 아니면 상위 에러 핸들러가 처리하도록 throw
+      else {
+        throw error;
+      }
     }
   },
 };

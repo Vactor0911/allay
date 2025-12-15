@@ -82,7 +82,7 @@ class DiscordBot {
 
     // 에러 처리
     this.client.on(Events.Error, (error) => {
-      console.error("Discord client error:", error);
+      // console.error("Discord client error:", error);
     });
 
     // 프로세스 종료 처리
@@ -105,18 +105,28 @@ class DiscordBot {
       console.log(
         `✓ ${interaction.user.tag}이(가) /${interaction.commandName} 실행`
       );
-    } catch (error) {
-      console.error(`커맨드 실행 오류 [${interaction.commandName}]:`, error);
+    } catch (error: any) {
+      // Unknown interaction 에러(10062)인 경우 - 인터랙션이 만료됨 (무시)
+      if (error.code === 10062) {
+        return;
+      }
 
-      const errorMessage = {
-        content: "커맨드 실행 중 오류가 발생했습니다.",
-        ephemeral: true,
-      };
+      console.error(`커맨드 실행 오류 [${interaction.commandName}]:`, error.message);
 
-      if (interaction.replied || interaction.deferred) {
-        await interaction.followUp(errorMessage);
-      } else {
-        await interaction.reply(errorMessage);
+      // 에러 메시지 전송
+      try {
+        if (interaction.deferred && !interaction.replied) {
+          await interaction.editReply({
+            content: "커맨드 실행 중 오류가 발생했습니다.",
+          });
+        } else if (!interaction.replied) {
+          await interaction.reply({
+            content: "커맨드 실행 중 오류가 발생했습니다.",
+            flags: MessageFlags.Ephemeral,
+          });
+        }
+      } catch {
+        // 에러 메시지 전송 실패 시 무시 (인터랙션 만료 등)
       }
     }
   }

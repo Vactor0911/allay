@@ -5,7 +5,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && xcopy /E /I /Y src\\assets dist\\assets",
+    "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "deploy": "tsx src/deploy.ts"
