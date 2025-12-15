@@ -26,6 +26,34 @@ const command: Command = {
         return;
       }
 
+      // 임베드 필드 생성
+      const fields = [
+        { name: "버전", value: serverData.version, inline: true },
+        {
+          name: "플레이어 수",
+          value: `${serverData.players.length} / ${serverData.playersMax}`,
+          inline: true,
+        },
+      ];
+
+      if (serverData.players.length > 0) {
+        // 공백 줄 추가
+        fields.push({
+          name: "",
+          value: "",
+          inline: false,
+        });
+
+        // 접속 중인 플레이어
+        fields.push({
+          name: "접속 중인 플레이어",
+          value: `${serverData.players
+            .map((player: { name: string; uuid: string }) => `- ${player.name}`)
+            .join("\n")}`,
+          inline: false,
+        });
+      }
+
       // 임베드 메시지 생성
       const embed = new EmbedBuilder()
         .setColor(0x4fc8d1)
@@ -35,28 +63,7 @@ const command: Command = {
         ㅤ`
         )
         .setThumbnail(serverIcon)
-        .addFields(
-          { name: "버전", value: serverData.version, inline: true },
-          {
-            name: "플레이어 수",
-            value: `${serverData.players.length} / ${serverData.playersMax}`,
-            inline: true,
-          },
-          {
-            name: "",
-            value: "",
-            inline: false,
-          },
-          {
-            name: "접속자 목록",
-            value: `${serverData.players
-              .map(
-                (player: { name: string; uuid: string }) => `- ${player.name}`
-              )
-              .join("\n")}`,
-            inline: false,
-          }
-        )
+        .addFields(fields)
         .setTimestamp(serverData.cachetime * 1000)
         .setFooter({
           text: "미자믹 업데이트 시간",
