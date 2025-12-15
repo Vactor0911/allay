@@ -2,16 +2,10 @@ import {
   SlashCommandBuilder,
   EmbedBuilder,
   ChatInputCommandInteraction,
-  AttachmentBuilder,
 } from "discord.js";
 import type { Command } from "../types/command.type.js";
 import { fetchServerStatus } from "../utils/serverStatus.js";
-import path from "path";
-import { fileURLToPath } from "url";
 import { serverIcon } from "../utils/index.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const command: Command = {
   data: new SlashCommandBuilder()
