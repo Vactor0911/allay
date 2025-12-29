@@ -34,9 +34,9 @@ const command: Command = {
         { name: "접속 주소", value: SERVER_ADDRESS, inline: true },
         { name: "권장 메모리", value: "8GB 이상", inline: true },
         { name: "", value: "", inline: false },
-        { name: "버전", value: "1.21.1", inline: true },
-        { name: "모드팩 버전", value: "9.3.13-modified-1", inline: true },
-        { name: "모드 구동기", value: "NeoForge 21.1.209", inline: true },
+        { name: "버전", value: "1.16.5", inline: true },
+        { name: "모드팩 버전", value: "1.0.0", inline: true },
+        { name: "모드 구동기", value: "Forge 36.2.34", inline: true },
         { name: "", value: "", inline: false },
         {
           name: "서버 규칙",
