@@ -66,7 +66,7 @@ const command: Command = {
         .addFields(fields)
         .setTimestamp(serverData.cachetime * 1000)
         .setFooter({
-          text: "미자믹 업데이트 시간",
+          text: "마지막 업데이트 시간",
           iconURL: "https://i.imgur.com/wSTFkRM.png",
         });
 
