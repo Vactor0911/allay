@@ -59,8 +59,8 @@ const command: Command = {
         .setColor(0x4fc8d1)
         .setTitle(serverData.motd)
         .setDescription(
-          `목원대학교 컴공과 마인크래프트 서버
-        ㅤ`
+          `목원대학교 마인크래프트 픽셀몬 서버
+          ㅤ`
         )
         .setThumbnail(serverIcon)
         .addFields(fields)
