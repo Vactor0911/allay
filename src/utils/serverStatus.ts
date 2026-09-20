@@ -38,7 +38,7 @@ export const fetchServerStatus = async (): Promise<CachedServerStatus> => {
   }
 
   const response = await axios.get(
-    `https://api.mcsrvstat.us/3/${SERVER_ADDRESS}`
+    `https://api.mcsrvstat.us/3/${SERVER_ADDRESS}`,
   );
   const serverData = response.data;
 
@@ -63,7 +63,7 @@ export const fetchServerStatus = async (): Promise<CachedServerStatus> => {
   }
 
   // 서버 정보
-  const motd = serverData.motd?.clean[0] || "MWU Minecraft Server";
+  const motd = serverData.motd?.clean[0] || "YUIL Minecraft Server";
   const version = serverData.version || "N/A";
   const players = serverData.players?.list || [];
   const playersMax = serverData.players?.max || "N/A";

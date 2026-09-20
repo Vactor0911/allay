@@ -47,7 +47,7 @@ class DiscordBot {
     const commandFiles = readdirSync(commandsPath).filter(
       (file) =>
         (file.endsWith(".js") || file.endsWith(".ts")) &&
-        !file.endsWith(".d.ts")
+        !file.endsWith(".d.ts"),
     );
 
     for (const file of commandFiles) {
@@ -69,7 +69,7 @@ class DiscordBot {
     this.client.once(Events.ClientReady, (readyClient) => {
       console.log(`\n✓ ${readyClient.user.tag} 봇이 준비되었습니다!`);
       console.log(
-        `✓ ${this.client.commands.size}개의 커맨드가 로드되었습니다.\n`
+        `✓ ${this.client.commands.size}개의 커맨드가 로드되었습니다.\n`,
       );
     });
 
@@ -91,7 +91,7 @@ class DiscordBot {
   }
 
   private async handleCommand(
-    interaction: ChatInputCommandInteraction
+    interaction: ChatInputCommandInteraction,
   ): Promise<void> {
     const command = this.client.commands.get(interaction.commandName);
 
@@ -103,7 +103,7 @@ class DiscordBot {
     try {
       await command.execute(interaction);
       console.log(
-        `✓ ${interaction.user.tag}이(가) /${interaction.commandName} 실행`
+        `✓ ${interaction.user.tag}이(가) /${interaction.commandName} 실행`,
       );
     } catch (error: any) {
       // Unknown interaction 에러(10062)인 경우 - 인터랙션이 만료됨 (무시)
@@ -111,7 +111,10 @@ class DiscordBot {
         return;
       }
 
-      console.error(`커맨드 실행 오류 [${interaction.commandName}]:`, error.message);
+      console.error(
+        `커맨드 실행 오류 [${interaction.commandName}]:`,
+        error.message,
+      );
 
       // 에러 메시지 전송
       try {

@@ -33,7 +33,7 @@ const deployCommands = async (): Promise<void> => {
 
   const commandFiles = readdirSync(commandsPath).filter(
     (file) =>
-      (file.endsWith(".js") || file.endsWith(".ts")) && !file.endsWith(".d.ts")
+      (file.endsWith(".js") || file.endsWith(".ts")) && !file.endsWith(".d.ts"),
   );
 
   // 모든 커맨드 로드
@@ -61,7 +61,7 @@ const deployCommands = async (): Promise<void> => {
       // 특정 서버에만 등록 (즉시 적용, 테스트용)
       data = await rest.put(
         Routes.applicationGuildCommands(config.clientId, config.guildId),
-        { body: commands }
+        { body: commands },
       );
       console.log(`✓ ${data.length}개의 커맨드가 서버에 등록되었습니다.`);
     } else {

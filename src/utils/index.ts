@@ -1,2 +1,2 @@
 export const serverIcon =
-  "https://github.com/Vactor0911/allay/releases/download/assets/server-icon-2.png";
+  "https://avatars.githubusercontent.com/u/227700708?s=200&v=4";

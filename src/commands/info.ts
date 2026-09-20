@@ -24,26 +24,26 @@ const command: Command = {
     // 임베드 메시지 생성
     const embed = new EmbedBuilder()
       .setColor(0x4fc8d1)
-      .setTitle("MWU Pixelmon Server")
+      .setTitle("YUIL Minecraft Server")
       .setDescription(
-        `목원대학교 마인크래프트 픽셀몬 서버
-        ㅤ`
+        `YUIL 마인크래프트 All The Mods 10 서버
+        ㅤ`,
       )
       .setThumbnail(serverIcon)
       .addFields(
         { name: "접속 주소", value: SERVER_ADDRESS, inline: true },
         { name: "권장 메모리", value: "8GB 이상", inline: true },
         { name: "", value: "", inline: false },
-        { name: "버전", value: "1.16.5", inline: true },
-        { name: "모드팩 버전", value: "1.0.1", inline: true },
-        { name: "모드 구동기", value: "Forge 36.2.34", inline: true },
+        { name: "버전", value: "1.21.1", inline: true },
+        { name: "모드팩 버전", value: "8.1 (Modified)", inline: true },
+        { name: "모드 구동기", value: "NeoForge 21.1.249", inline: true },
         { name: "", value: "", inline: false },
         {
           name: "서버 규칙",
           value: `1. 상식적으로 행동하세요.
 2. 재미있게 플레이하세요.`,
           inline: false,
-        }
+        },
       )
       .setFooter({
         text: "Powered by discord.js",
